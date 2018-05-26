@@ -1,6 +1,8 @@
 # Capstone_Data-Science
-Data Science Capstone : Final Project
-author: Maliheh Shomali date: 05/25/2018 autosize: true
+## Final Project
+author: Maliheh Shomali
+Date: 05/25/2018 
+Autosize: true
 
 Project
 A Shiny app that takes as input a phrase (multiple words) in a text box input and outputs a prediction of the next word.
