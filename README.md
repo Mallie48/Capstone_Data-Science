@@ -35,4 +35,3 @@ Autosize: true
 - In the lefthand column of this table we have the predicted words, in the right hand column we have the log probability. The table is sorted from the most likely word in the first row to the least likely in the last row.
 - As an example, if the sentence "Born on April 15," from the en_US.news notepad, is entered by users, the App interprets the text as: "born april", and the five predicted words based on the submitted phrase will be: "th", "pm", "may", "fools" and "will".
 
-https://beta.rstudioconnect.com/content/3749/
