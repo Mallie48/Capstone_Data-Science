@@ -1,33 +1,38 @@
 # Capstone_Data-Science
-## Final Project
+# Final Project
 author: Maliheh Shomali
 Date: 05/25/2018 
 Autosize: true
 
-Project
-A Shiny app that takes as input a phrase (multiple words) in a text box input and outputs a prediction of the next word.
+# Overview 
+- The goal of this exercise is to create a product (Application) with a shiny app that would predict the next word as a sentense is entered  using the SwiftKey dataset
+- A Shiny app that takes as input a phrase (multiple words) in a text box input and outputs a prediction of the next word.
+- The data is from a corpus called HC Corpora (www.corpora.heliohost.org).
 
-The data is from a corpus called HC Corpora (www.corpora.heliohost.org).
+[Shiny App] https://beta.rstudioconnect.com/content/3749/
 
-This Presentation will discuss the Text Prediction Algorithm, Calculating Probability Score, and finally performance and location of the application.
+[GitHub] https://github.com/Mallie48/Capstone_Data-Science 
 
-Text Prediction Algorithm
-Step 1: We begin with user input and filter it to remove profanity, punctuation, contractions, numbers, foreign characters, common words, and any extra white space.
+# R scripts that are used to crate the shiny app:
+1) createFilteredTables.R: this file takes the raw data and creates the file 'NGramSortedFinal.txt'. 
+2) NGramSortedFinal.txt: contains four concatenated tables and the associated NGram counts.
+3) getPredWord.R: this is the main function called by server.R for the application interface. This file searches for matches based on the user input, and calculates a penalty for the probability score.
+4) global.R: loads the lookup tables to search for matches, loads additional libraries and functions.
+5) server.R: code necessary to access user input, calls functions necessary, and return results to the user interface
+6) ui.R: code necessary for the application interface. 
+7) profanity.RData: a list of words that needs to be remove.
+8) divideNGram.RData: contains positions used to divide the table (from NGramSortedFinal.txt) into look up tables. NGramSortedFinal.txt and divideNGram.RData are used to load and divide the tables used for searching for a match.
 
-Step 2: Search for a match. If sufficient number of matches are found, skip to Step 4.
+# Getting & Cleaning the Data
+- A subset data is made from three sources (blogs,twitter and news) of original SwiftKey dataset, and then merged into one. 
+- The data cleaning has been performed by converting all capitals to lowercase, removing punctuation and numbers, foreign characters, common words, and any extra white space.
+- Next, the corresponding N-Grams (unigram, bigram, trigram) are  created.
+- Last, the term-count tables are extracted from the N-Grams .RData and sorted according to the frequency in descending order. 
+- The algorithm then calculates probability scores for matches. 
 
-Step 3: If more matches are needed we shorten user input and search again
+# Text Prediction Algorithem
+- The algorithm returns three things. First the original text the user provided, second is the filtered text provided to the algorithm, third is a table. 
+- In the lefthand column of this table we have the predicted words, in the right hand column we have the log probability. The table is sorted from the most likely word in the first row to the least likely in the last row.
+- As an example, if the sentence "Born on April 15," from the en_US.news notepad, is entered by users, the App interprets the text as: "born april", and the five predicted words based on the submitted phrase will be: "th", "pm", "may", "fools" and "will".
 
-Step 4: Calculate probability scores for matches, add penalty if necessary Log probability is employed to increase algorithm speed
-
-Calculating Probability Score
-The equation below predict next word. In order to predict the next word we start with the left hand sife of the eqaution. This statement reads the probability of ‘you’ given ‘looking forward seeing’. The full equation below employs a Markov assumption. Under this assumption we can reduce the computational complexity of algorithm.
-
-P(you|looking+forward+seeing) ~ P(you|seeing)
-
-Application Inference
-The User Input panel on the left contains three items. First is a text box to enter the phrase you’d like analyzed. Second is a drop down menu where you can select the maximum number of words to return. Third is a button, ‘Analyze Text’, that is the algorithm’s call to action and initiates the analysis. Analysis will only be performed upon pressing this button.
-
-The algorithm returns three things. First the original text that the user provided, second is the filtered text provided to the algorithm, third is a table. In the lefthand column of this table we have the predicted words, in the right hand column we have the log probability. The table is sorted from the most likely word in the first row to the least likely in the last row.
-
-The application can be found at: https://kabiri.shinyapps.io/Capstone/
+https://beta.rstudioconnect.com/content/3749/
