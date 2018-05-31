@@ -13,6 +13,8 @@ Autosize: true
 
 [GitHub] https://github.com/Mallie48/Capstone_Data-Science 
 
+[Slides] http://rpubs.com/shomali/393143 
+
 # R scripts that are used to crate the shiny app:
 1) createFilteredTables.R: this file takes the raw data and creates the file 'NGramSortedFinal.txt'. 
 2) NGramSortedFinal.txt: contains four concatenated tables and the associated NGram counts.
